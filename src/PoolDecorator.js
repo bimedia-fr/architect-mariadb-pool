@@ -19,16 +19,17 @@ module.exports = {
             _pool: pool,
             connection: pool.getConnection.bind(pool),
             query: pool.query.bind(pool),
-            queryStream: () => {
+            queryStream: (sql, values) => {
                 return deferred(function (str) {
                     pool.getConnection().then(conn => {
                         let release = releaser(conn);
-                        let stream = conn.queryStream.apply(conn, arguments);
+                        let stream = conn.queryStream(sql, values);
                         stream.once('end', release);
                         stream.once('error', function (err) {
                             release(); // close conn on error
                             str.emit('error', err); // emit error.
                         });
+                        stream.pipe(str);
                     });
                 });
             }
