@@ -1,5 +1,5 @@
 const stream = require('stream');
-
+const MariadbStreamWriter = require('./MariadbStreamWriter');
 function deferred(fn) {
     var str = new stream.PassThrough({
         'objectMode': true
@@ -19,6 +19,7 @@ module.exports = {
             _pool: pool,
             connection: pool.getConnection.bind(pool),
             query: pool.query.bind(pool),
+            StreamWriter: MariadbStreamWriter,
             queryStream: (sql, values) => {
                 return deferred(function (str) {
                     pool.getConnection().then(conn => {
