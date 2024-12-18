@@ -1,0 +1,20 @@
+{
+  "name": "architect-mariadb-pool",
+  "version": "1.0.0-0",
+  "description": "architect mariadb connection pool",
+  "main": "src/index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.com:orisha-group/bu-retail/devlyx/devance-modules/architect-mariadb-pool.git"
+  },
+  "keywords": [
+    "mariadb",
+    "pool",
+    "architect"
+  ],
+  "author": "anthony cifuentes",
+  "dependencies": {
+    "mariadb": "^3.4.0"
+  }
+}
