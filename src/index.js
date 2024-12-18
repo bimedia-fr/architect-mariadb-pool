@@ -1,4 +1,5 @@
 const mysql = require('mariadb');
+const decorator = require('./PoolDecorator');
 
 module.exports = function setup (options, imports, register) {
   const log = imports.log.getLogger('architect-mariadb-pool');
@@ -17,7 +18,7 @@ module.exports = function setup (options, imports, register) {
   function createPools (name, opts) {
     try {
       log.debug('create mariadb connection pool ', name);
-      return mysql.createPool(Object.assign({}, DEFAULT_CONFIG, opts));
+      return decorator.decorate(mysql.createPool(Object.assign({}, DEFAULT_CONFIG, opts)));
     } catch (error) {
       log.error('unable to create pool ', name, error);
     }
@@ -34,7 +35,7 @@ module.exports = function setup (options, imports, register) {
 
   try {
     register(null, {
-      mysql: pools,
+      mariadb: pools,
       onDestroy: () => {
         return Promise.allSettled(Object.keys(options).map(name => {
           this.log.debug('closing pool', name);
