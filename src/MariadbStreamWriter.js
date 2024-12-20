@@ -9,13 +9,13 @@ class MariadbStreamWriter extends stream.Writable {
     }
 
     _write (chunk, encoding, done) {
-        this.pool.batch(this.sql, [chunk]).then(() => {
+        this.pool._pool.batch(this.sql, [chunk]).then(() => {
             done();
         }).catch(done);
     }
 
     _writev(chunks, done) {
-        this.pool.batch(this.sql, chunks.map(obj => obj.chunk)).then(() => {
+        this.pool._pool.batch(this.sql, chunks.map(obj => obj.chunk)).then(() => {
             done();
         }).catch(done);
     }
