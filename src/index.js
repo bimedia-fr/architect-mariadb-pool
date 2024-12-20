@@ -37,9 +37,9 @@ module.exports = function setup (options, imports, register) {
     register(null, {
       mariadb: pools,
       onDestroy: () => {
-        return Promise.allSettled(Object.keys(options).map(name => {
+        return Promise.allSettled(Object.keys(pools).map(name => {
           log.debug('closing pool', name);
-          return pools[name].end();
+          return pools[name]._pool.end();
         }));
       }
     });
