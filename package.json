@@ -1,6 +1,6 @@
 {
   "name": "architect-mariadb-pool",
-  "version": "1.0.0-0",
+  "version": "1.0.0",
   "description": "architect mariadb connection pool",
   "main": "src/index.js",
   "scripts": {},
