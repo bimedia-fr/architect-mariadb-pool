@@ -6,7 +6,7 @@
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git@gitlab.com:orisha-group/bu-retail/devlyx/devance-modules/architect-mariadb-pool.git"
+    "url": "https://github.com/bimedia-fr/architect-mariadb-pool"
   },
   "keywords": [
     "mariadb",
@@ -15,6 +15,6 @@
   ],
   "author": "anthony cifuentes",
   "dependencies": {
-    "mariadb": "^3.4.0"
+    "mariadb": "^3.4.2"
   }
 }
